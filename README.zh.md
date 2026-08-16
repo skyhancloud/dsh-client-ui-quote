@@ -9,6 +9,7 @@
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/commits/main"><img alt="最近提交" src="https://shieldcn.dev/github/last-commit/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/releases"><img alt="版本" src="https://shieldcn.dev/badge/version-0.1.0-blue.svg?variant=secondary" /></a>
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/actions"><img alt="CI 状态" src="https://shieldcn.dev/github/ci/skyhancloud/dsh-client-ui-quote.svg?workflow=release.yml&branch=main&variant=secondary" /></a>
+<a href="https://github.com/sponsors/skyhancloud"><img alt="赞助" src="https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ea4aaa.svg" /></a>
 
 ## 目录
 
