@@ -24,9 +24,9 @@ A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside 
 
 ## Preview
 
-![Toolbar above a selected AI reply](preview-1.png)
+![Toolbar above a selected AI reply](assets/preview-1.png)
 
-![Quote banner above the composer](preview-2.png)
+![Quote banner above the composer](assets/preview-2.png)
 
 ## Installation
 
