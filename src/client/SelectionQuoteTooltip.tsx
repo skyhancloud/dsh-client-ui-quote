@@ -11,8 +11,8 @@
  * debounced by 50ms so the toolbar never flashes mid-drag; any selection
  * change restarts the delay, and a collapsed or unquotable selection cancels
  * it. Clicking 引用 attaches the selection as a quote banner above the
- * composer card in the GoalBar family look — a quote glyph, a label, the
- * quoted text, and a remove button — without touching the draft. The banner
+ * composer card in the queue-panel look — a quote glyph, the quoted text,
+ * and a remove button — without touching the draft. The banner
  * rides the input machine's `quote` attachment (`inputActions.setQuote`), and
  * the conversation sink prepends the serialized blockquote to the outgoing
  * message at submit, so the model sees what the user refers to while the
@@ -295,23 +295,24 @@ export function SelectionQuoteTooltip({ input, inputActions, t }: SelectionQuote
       </div>
       {quoteSupported && (inputState.quote ?? null) !== null && (
         <div className={css.dock} data-quote-banner="">
-          <div className={css.bar}>
-            <span className={css.glyph}>
-              <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
-              </svg>
-            </span>
-            <span className={css.label}>{t('action.quote')}</span>
-            <span className={css.objective}>{inputState.quote?.text}</span>
-            <div className={css.actions}>
-              <button
-                type="button"
-                className={css.iconBtn}
-                aria-label={t('action.removeQuote')}
-                onClick={() => { setQuote?.(null) }}
-              >
-                <IconCloseOutline16 size={14} />
-              </button>
+          <div className={css.panel}>
+            <div className={css.row}>
+              <span className={css.glyph}>
+                <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                </svg>
+              </span>
+              <span className={css.objective}>{inputState.quote?.text}</span>
+              <div className={css.actions}>
+                <button
+                  type="button"
+                  className={css.iconBtn}
+                  aria-label={t('action.removeQuote')}
+                  onClick={() => { setQuote?.(null) }}
+                >
+                  <IconCloseOutline16 size={14} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

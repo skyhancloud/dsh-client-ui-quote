@@ -1,7 +1,7 @@
 /* The selection-quoting surface: a pointer-inert full-viewport layer hosting
    the floating toolbar above the active selection, plus the composer quote
-   banner — a GoalBar-family dock strip (same composer-stack card language:
-   dock column width, bar chrome, glyph/label/objective/actions row). */
+   banner — a queue-style attached panel (rounded top, tucked under the input
+   card's top edge). */
 
 .layer {
   position: fixed;
@@ -39,56 +39,69 @@
   color: var(--dsw-alias-label-secondary);
 }
 
-/* The pending-send quote banner: the GoalBar dock column (card cap minus the
-   composer-stack insets) hosting a bar with glyph, label, quoted text, and
-   the remove action. */
+/* The pending-send quote banner. The panel replicates the queue strip's
+   shape: rounded top corners, square bottom tucked under the input card. */
 .dock {
   box-sizing: border-box;
+  flex: none;
   width: calc(
     100% -
     var(--dsh-composer-side-clearance) -
     var(--dsh-composer-side-clearance) -
     var(--dsh-composer-dock-inset) -
-    var(--dsh-composer-dock-inset) -
+    var(--dsh-composer-dock-inset)
+  );
+  max-width: calc(
+    var(--dsh-composer-card-max-width) -
     var(--dsh-composer-dock-inset) -
     var(--dsh-composer-dock-inset)
   );
-  margin: 0 auto;
+  /* Cancel the stack gap and tuck 3px under the input card (square bottom),
+     reading as one attached surface. */
+  margin: 0 auto calc(0px - var(--dsh-composer-stack-gap) - 3px);
+  padding: 0 var(--dsh-composer-dock-inset);
 }
 
-.bar {
+.panel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 2px 0;
+  border-radius: 12px 12px 0 0;
+  background: var(--dsw-specific-tip);
+}
+
+.panel::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--dsw-alias-border-l1);
+  /* The input card's own top border closes the shape below. */
+  border-bottom: none;
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+}
+
+.row {
   box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
-  max-width: calc(var(--dsh-composer-card-max-width) - 4 * var(--dsh-composer-dock-inset));
   height: 36px;
-  margin: 0 auto;
   padding: 4px 5px 4px 12px;
-  border: 1px solid var(--dsw-alias-border-l1);
-  border-radius: 12px;
-  background: var(--dsw-specific-tip);
+  border-radius: 8px;
 }
 
 .glyph {
-  display: inline-flex;
+  display: grid;
   flex: none;
+  place-items: center;
   color: var(--dsw-alias-label-tertiary);
 }
 
-/* Matches the Goal/Todo/Queue panel labels (13/24 medium, primary) so the
-   composer-stack cards read as one family. */
-.label {
-  flex: none;
-  font-size: 13px;
-  line-height: 24px;
-  font-weight: 500;
-  color: var(--dsw-alias-label-primary);
-}
-
 .objective {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
   font-size: 13px;
@@ -96,6 +109,7 @@
   color: var(--dsw-alias-label-primary-dimmed);
   text-overflow: ellipsis;
   white-space: nowrap;
+  word-break: break-word;
 }
 
 .actions {
@@ -106,9 +120,9 @@
 }
 
 .iconBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  flex: none;
+  place-items: center;
   width: 28px;
   height: 28px;
   padding: 0;
