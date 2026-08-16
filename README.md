@@ -7,10 +7,7 @@
 
 # dsh-client-ui-quote
 
-<p align="center">
-  <a href="README.md"><img alt="English" src="https://shieldcn.dev/badge/language-English-blue.svg?variant=secondary" /></a>
-  <a href="README.zh.md"><img alt="中文" src="https://shieldcn.dev/badge/language-%E4%B8%AD%E6%96%87-blue.svg?variant=secondary" /></a>
-</p>
+English | [中文](README.zh.md)
 
 A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside an AI reply and attach it to your next message as a quote banner.
 
