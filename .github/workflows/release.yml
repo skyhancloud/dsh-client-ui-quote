@@ -1,8 +1,7 @@
 name: Release
 
+# Manual-only: push commits, then run this workflow when a release is wanted.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
