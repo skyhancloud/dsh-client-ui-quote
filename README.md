@@ -4,8 +4,12 @@ English | [中文](README.zh.md)
 
 A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside an AI reply and attach it to your next message as a quote banner.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+<p align="center">
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/stargazers"><img alt="GitHub stars" src="https://shieldcn.dev/github/stars/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/blob/main/LICENSE"><img alt="License" src="https://shieldcn.dev/github/license/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/commits/main"><img alt="Last commit" src="https://shieldcn.dev/github/last-commit/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/releases"><img alt="Version" src="https://shieldcn.dev/badge/version-0.1.0-blue.svg?variant=secondary" /></a>
+</p>
 
 ## Table of Contents
 

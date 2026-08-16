@@ -4,8 +4,12 @@
 
 为 DeepSeek Harness 网页界面（`dsh web`）提供选中引用功能：选中 AI 回复中的文字，把引用附加到你的下一条消息。
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+<p align="center">
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/stargazers"><img alt="GitHub 星标" src="https://shieldcn.dev/github/stars/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/blob/main/LICENSE"><img alt="许可证" src="https://shieldcn.dev/github/license/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/commits/main"><img alt="最近提交" src="https://shieldcn.dev/github/last-commit/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
+  <a href="https://github.com/skyhancloud/dsh-client-ui-quote/releases"><img alt="版本" src="https://shieldcn.dev/badge/version-0.1.0-blue.svg?variant=secondary" /></a>
+</p>
 
 ## 目录
 
