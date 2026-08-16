@@ -1,0 +1,102 @@
+name: AI Release Notes
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to write notes for (defaults to the latest draft release)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve tag and commits
+        id: commits
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="${{ github.event.inputs.tag }}"
+          if [ -z "$TAG" ]; then
+            TAG="$(gh release list --json tagName,isDraft --jq '[.[] | select(.isDraft)] | first | .tagName // empty')"
+          fi
+          if [ -z "$TAG" ]; then
+            echo "No draft release found. Run the Release workflow first, or pass a tag." >&2
+            exit 1
+          fi
+          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
+          if [ -n "$PREV" ]; then
+            git log --no-merges --format='- %s' "$PREV..$TAG" > commits.txt
+          else
+            git log --no-merges --format='- %s' "$TAG" > commits.txt
+          fi
+          grep -v '^\- chore(release):' commits.txt > commits-filtered.txt || true
+          mv commits-filtered.txt commits.txt
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Generate notes with AI
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: |
+          set -euo pipefail
+          if [ -z "$LLM_API_KEY" ]; then
+            echo "Set the LLM_API_KEY repository secret (any OpenAI-compatible key, e.g. DeepSeek)." >&2
+            exit 1
+          fi
+          BASE="${LLM_BASE_URL:-https://api.deepseek.com}"
+          MODEL="${LLM_MODEL:-deepseek-chat}"
+          python3 - "$BASE" "$MODEL" <<'PY'
+          import json
+          import os
+          import sys
+          import urllib.request
+
+          base, model = sys.argv[1], sys.argv[2]
+          commits = open('commits.txt', encoding='utf-8').read().strip()
+          prompt = (
+            'dsh-client-ui-quote is a selection-quoting plugin for the DeepSeek Harness web GUI. '
+            'Write concise, user-friendly release notes for this release from the commit list below. '
+            "Group changes under 'Features', 'Bug fixes', and 'Other'. "
+            'Use plain language, no marketing. Output GitHub-flavored Markdown only.\n\n'
+            f'Commits:\n{commits}'
+          )
+          req = urllib.request.Request(
+            f"{base.rstrip('/')}/chat/completions",
+            data=json.dumps({
+              'model': model,
+              'messages': [
+                {'role': 'system', 'content': 'You write release notes for a small open-source plugin.'},
+                {'role': 'user', 'content': prompt},
+              ],
+              'temperature': 0.3,
+            }).encode(),
+            headers={
+              'Authorization': f"Bearer {os.environ['LLM_API_KEY']}",
+              'Content-Type': 'application/json',
+            },
+          )
+          with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.load(resp)
+          notes = data['choices'][0]['message']['content']
+          with open('notes.md', 'w', encoding='utf-8') as f:
+            f.write(notes.strip() + '\n')
+          PY
+
+      - name: Update draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.commits.outputs.tag }}"
+          gh release edit "$TAG" --notes-file notes.md
+          echo "Updated draft release $TAG with AI-written notes."
