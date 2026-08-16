@@ -1,0 +1,5 @@
+# Standalone install manifest for `dsh plugin add` (the dsh.bundle patch this
+# package declares): inserting the row composes the plugin into the profile.
+- insert:
+    - id: dsh-client-ui-quote
+      name: dsh-client-ui-quote
