@@ -1,6 +1,9 @@
 # dsh-client-ui-quote
 
-[English](README.md) | 中文
+<p align="center">
+  <a href="README.md"><img alt="English" src="https://shieldcn.dev/badge/language-English-blue.svg?variant=secondary" /></a>
+  <a href="README.zh.md"><img alt="中文" src="https://shieldcn.dev/badge/language-%E4%B8%AD%E6%96%87-blue.svg?variant=secondary" /></a>
+</p>
 
 为 DeepSeek Harness 网页界面（`dsh web`）提供选中引用功能：选中 AI 回复中的文字，把引用附加到你的下一条消息。
 
