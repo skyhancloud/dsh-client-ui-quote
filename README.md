@@ -17,7 +17,7 @@ A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside 
 ## Features
 
 - **Selection toolbar** — one 引用 (Quote) button appears above the selection after a 50ms debounce, so it never flashes mid-drag. It hides on Escape, scroll-away, or when the selection collapses.
-- **Quote banner** — a removable strip above the composer with a quote glyph, the quoted text, and a × button. The banner stays until closed, and the quote is included in every send.
+- **Quote banner** — a removable strip above the composer with a quote glyph, the quoted text, and a × button. The quote is consumed by the next send: the banner clears when the message goes out.
 - **Clean draft** — the quote is a pending-send attachment, not text in your input. Focus returns to the composer so typing follows.
 - **Localized** — toolbar labels and the quote attribution follow the UI language (中文 / English).
 - **Fallback for older harnesses** — on versions without the input-machine quote attachment, the button inserts the quote block at the end of the draft instead.
@@ -78,7 +78,7 @@ MIT — see [LICENSE](LICENSE).
 **功能**
 
 - 选中 AI 回复中的文字，选区上方出现一个 **引用** 按钮（50ms 防抖，拖选时不闪现；按 Esc、滚动离开或选区折叠时隐藏）。
-- 引用横幅：输入框上方的可移除条带，带引用标记、引用文本和 × 按钮。横幅保留到手动关闭，每次发送都会带上引用。
+- 引用横幅：输入框上方的可移除条带，带引用标记、引用文本和 × 按钮。引用在下一次发送时被消耗——消息发出后横幅自动消失。
 - 草稿保持干净：引用是待发送附件，不会写进输入框；点击后焦点回到输入框。
 - 界面文案与引用内容跟随 UI 语言（中文 / English）。
 - 兼容旧版：输入机没有引用附件时，按钮改为把引用块插入草稿末尾。
