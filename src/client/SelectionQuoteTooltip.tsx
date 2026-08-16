@@ -196,9 +196,15 @@ export function SelectionQuoteTooltip({ input, inputActions, t }: SelectionQuote
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') {
-        cancelShow()
-        commit(null)
+      if (event.key !== 'Escape') return
+      cancelShow()
+      commit(null)
+      // Escape while the composer textarea is focused clears the pending
+      // quote: the banner is the thing the gesture dismisses.
+      if (quoteSupported && setQuote !== undefined
+        && event.target instanceof HTMLElement
+        && event.target.closest('[data-input-scroll]') !== null) {
+        setQuote(null)
       }
     }
     document.addEventListener('selectionchange', evaluate)
@@ -214,7 +220,7 @@ export function SelectionQuoteTooltip({ input, inputActions, t }: SelectionQuote
       window.removeEventListener('resize', reposition)
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [cancelShow, commit, evaluate, reposition])
+  }, [cancelShow, commit, evaluate, quoteSupported, reposition, setQuote])
 
   // Place the toolbar above the active pick's rect, measured against the
   // toolbar's REAL size: the toolbar renders in the same commit (hidden until

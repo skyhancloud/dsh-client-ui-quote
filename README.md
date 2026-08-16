@@ -30,7 +30,7 @@ A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside 
 ## Features
 
 - **Selection toolbar** — one 引用 (Quote) button appears above the selection after a 50ms debounce, so it never flashes mid-drag. It hides on Escape, scroll-away, or when the selection collapses.
-- **Quote banner** — a removable strip above the composer with a quote glyph, the quoted text, and a × button. The quote is consumed by the next send: the banner clears when the message goes out.
+- **Quote banner** — a removable strip above the composer with a quote glyph, the quoted text, and a × button. The quote is consumed by the next send: the banner clears when the message goes out. Escape while the composer is focused clears it too.
 - **Clean draft** — the quote is a pending-send attachment, not text in your input. Focus returns to the composer so typing follows.
 - **Localized** — toolbar labels and the quote attribution follow the UI language (中文 / English).
 - **Fallback for older harnesses** — on versions without the input-machine quote attachment, the button inserts the quote block at the end of the draft instead.
