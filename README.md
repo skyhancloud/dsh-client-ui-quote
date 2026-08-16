@@ -8,7 +8,7 @@ A selection-quoting plugin for the DeepSeek Harness web GUI: select text inside 
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/blob/main/LICENSE"><img alt="License" src="https://shieldcn.dev/github/license/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/commits/main"><img alt="Last commit" src="https://shieldcn.dev/github/last-commit/skyhancloud/dsh-client-ui-quote.svg?variant=secondary" /></a>
 <a href="https://github.com/skyhancloud/dsh-client-ui-quote/releases"><img alt="Version" src="https://shieldcn.dev/badge/version-0.1.0-blue.svg?variant=secondary" /></a>
-<a href="https://github.com/skyhancloud/dsh-client-ui-quote/actions"><img alt="CI status" src="https://shieldcn.dev/github/ci/skyhancloud/dsh-client-ui-quote.svg?workflow=release.yml&branch=main" /></a>
+<a href="https://github.com/skyhancloud/dsh-client-ui-quote/actions"><img alt="CI status" src="https://shieldcn.dev/github/ci/skyhancloud/dsh-client-ui-quote.svg?workflow=release.yml&branch=main&variant=secondary" /></a>
 
 ## Table of Contents
 
